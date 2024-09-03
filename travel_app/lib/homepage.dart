@@ -18,198 +18,170 @@ class _TravelPageState extends State<TravelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: -28,
-              top: -38,
-              child: Container(
-                width: 371,
-                height: 814,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      'assets//bg.png',
-                    ),
+      body: Stack(
+        children: [
+          Positioned(
+            left: -28,
+            top: -38,
+            child: Container(
+              width: 371,
+              height: 814,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/bg.png', // Adjust path as necessary
                   ),
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(17, 24, 0, 15),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Positioned(
-                    left: 47,
-                    top: 98,
-                    child: Opacity(
-                      opacity: 1,
-                      child: Container(
-                        width: 221,
-                        height: 65,
-                        decoration: BoxDecoration(
-                          backgroundBlendMode: BlendMode.softLight,
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
-                              offset: Offset(4, 4),
-                              blurRadius: 3.4,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 390,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(1.9, 0, 1.9, 68),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: SizedBox(
-                              width: 322.1,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(0, 0, 0, 28),
-                                    child: SizedBox(
-                                      width: 38.2,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            margin:
-                                                EdgeInsets.fromLTRB(0, 0, 0, 8),
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFD9D9D9),
-                                            ),
-                                            width: 38.2,
-                                            height: 0,
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.fromLTRB(
-                                                1.1, 0, 12.9, 0),
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFD9D9D9),
-                                            ),
-                                            width: 24.2,
-                                            height: 0,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                                    child: Container(
-                                      width: 42,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFD9D9D9),
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            'https://yourdomain.com/assets/images/people_1.png',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 75, 20),
-                          child: Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              'PADHARO',
-                              style: GoogleFonts.philosopher(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 40,
-                                letterSpacing: 3.2,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(17, 24, 0, 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Top content
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(1.9, 0, 1.9, 68),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: SizedBox(
+                          width: 322.1,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildHoverableContainer(
-                                'Itinerary',
-                                'https://yourdomain.com/assets/images/calendar_1.png',
-                                _itineraryScale,
-                                (value) => setState(() {
-                                  _itineraryScale = value;
-                                }),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 0, 28),
+                                child: SizedBox(
+                                  width: 38.2,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD9D9D9),
+                                        ),
+                                        width: 38.2,
+                                        height: 0,
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.fromLTRB(
+                                            1.1, 0, 12.9, 0),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFD9D9D9),
+                                        ),
+                                        width: 24.2,
+                                        height: 0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                              _buildHoverableContainer(
-                                'Essentials',
-                                'https://yourdomain.com/assets/images/image_3.png',
-                                _essentialsScale,
-                                (value) => setState(() {
-                                  _essentialsScale = value;
-                                }),
-                              ),
-                              _buildHoverableContainer(
-                                'Price Alert',
-                                'https://yourdomain.com/assets/images/price_alert.png',
-                                _priceAlertScale,
-                                (value) => setState(() {
-                                  _priceAlertScale = value;
-                                }),
-                              ),
-                              _buildHoverableContainer(
-                                'Crowd Prediction',
-                                'https://yourdomain.com/assets/images/crowd_prediction.png',
-                                _crowdPredictionScale,
-                                (value) => setState(() {
-                                  _crowdPredictionScale = value;
-                                }),
-                              ),
-                              _buildHoverableContainer(
-                                'Document Management',
-                                'https://yourdomain.com/assets/images/document_management.png',
-                                _documentManagementScale,
-                                (value) => setState(() {
-                                  _documentManagementScale = value;
-                                }),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                                child: Container(
+                                  width: 42,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFD9D9D9),
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        'https://yourdomain.com/assets/images/people_1.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 75, 20),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          'PADHARO',
+                          style: GoogleFonts.philosopher(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 40,
+                            letterSpacing: 3.2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          // Bottom scrollable row
+          Positioned(
+            bottom:
+                30, // Adjust this value to control how much above the bottom edge it appears
+            left: 0,
+            right: 0,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _buildHoverableContainer(
+                    'Itinerary',
+                    'https://yourdomain.com/assets/images/calendar_1.png',
+                    _itineraryScale,
+                    (value) => setState(() {
+                      _itineraryScale = value;
+                    }),
+                  ),
+                  _buildHoverableContainer(
+                    'Essentials',
+                    'https://yourdomain.com/assets/images/image_3.png',
+                    _essentialsScale,
+                    (value) => setState(() {
+                      _essentialsScale = value;
+                    }),
+                  ),
+                  _buildHoverableContainer(
+                    'Price Alert',
+                    'https://yourdomain.com/assets/images/price_alert.png',
+                    _priceAlertScale,
+                    (value) => setState(() {
+                      _priceAlertScale = value;
+                    }),
+                  ),
+                  _buildHoverableContainer(
+                    'Crowd Prediction',
+                    'https://yourdomain.com/assets/images/crowd_prediction.png',
+                    _crowdPredictionScale,
+                    (value) => setState(() {
+                      _crowdPredictionScale = value;
+                    }),
+                  ),
+                  _buildHoverableContainer(
+                    'Document Management',
+                    'https://yourdomain.com/assets/images/document_management.png',
+                    _documentManagementScale,
+                    (value) => setState(() {
+                      _documentManagementScale = value;
+                    }),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -260,10 +232,4 @@ class _TravelPageState extends State<TravelPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: TravelPage(),
-  ));
 }
