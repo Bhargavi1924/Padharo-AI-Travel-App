@@ -22,7 +22,7 @@ class TravelPage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
-                      'Assets\App background image 1.png',
+                      'C:\Users\hp\Documents\GitHub\AI-Alchemists\travel_app\Assets\pixlr-image-generator-c5aaea02-e6e4-41b6-8b33-3c9bc7aff217.png',
                     ),
                   ),
                 ),
