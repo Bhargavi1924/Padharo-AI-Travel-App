@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TravelPage extends StatelessWidget {
+class TravelPage extends StatefulWidget {
+  @override
+  _TravelPageState createState() => _TravelPageState();
+}
+
+class _TravelPageState extends State<TravelPage> {
+  // Scale factors for hover effect
+  double _itineraryScale = 1.0;
+  double _essentialsScale = 1.0;
+  double _priceAlertScale = 1.0;
+  double _crowdPredictionScale = 1.0;
+  double _documentManagementScale = 1.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +34,7 @@ class TravelPage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
-                      'C:\Users\hp\Documents\GitHub\AI-Alchemists\travel_app\Assets\pixlr-image-generator-c5aaea02-e6e4-41b6-8b33-3c9bc7aff217.png',
+                      'assets//bg.png',
                     ),
                   ),
                 ),
@@ -128,7 +140,7 @@ class TravelPage extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 75, 378),
+                          margin: EdgeInsets.fromLTRB(0, 0, 75, 20),
                           child: Align(
                             alignment: Alignment.topCenter,
                             child: Text(
@@ -142,140 +154,53 @@ class TravelPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 19, 0),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xFFD9D9D9)),
-                                  borderRadius: BorderRadius.circular(45),
-                                  color: Color(0xFFD9D9D9),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
-                                      child: Text(
-                                        'Itinerary',
-                                        style: GoogleFonts.comfortaa(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 30,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.fromLTRB(0, 0, 81.8, 12),
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                            'https://yourdomain.com/assets/images/calendar_1.png',
-                                          ),
-                                        ),
-                                      ),
-                                      width: 49,
-                                      height: 49,
-                                    ),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.fromLTRB(0, 0, 79.8, 0),
-                                      transform: Matrix4.rotationZ(1.5708),
-                                      child: Container(
-                                        color: Colors.black,
-                                        width: 36.1,
-                                        height: 0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              _buildHoverableContainer(
+                                'Itinerary',
+                                'https://yourdomain.com/assets/images/calendar_1.png',
+                                _itineraryScale,
+                                (value) => setState(() {
+                                  _itineraryScale = value;
+                                }),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Color(0xFFCCC9C9)),
-                                        borderRadius: BorderRadius.circular(45),
-                                        color: Color(0xFFCCC9C9),
-                                      ),
-                                      child: SizedBox(
-                                        width: double.infinity,
-                                        child: Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              0, 35, 19.8, 71),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.fromLTRB(
-                                                    0, 0, 0, 9),
-                                                child: Text(
-                                                  'Essentials',
-                                                  style: GoogleFonts.comfortaa(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 25,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.fromLTRB(
-                                                    0, 0, 86.3, 0),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.topCenter,
-                                                  child: Container(
-                                                    width: 45,
-                                                    height: 45,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.cover,
-                                                        image: NetworkImage(
-                                                          'https://yourdomain.com/assets/images/image_3.png',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 51,
-                                      bottom: 33,
-                                      child: Transform(
-                                        transform: Matrix4.rotationZ(1.5758),
-                                        child: SizedBox(
-                                          width: 22,
-                                          height: 22,
-                                          child: SvgPicture.network(
-                                            'https://yourdomain.com/assets/vectors/arrow_2_x2.svg',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              _buildHoverableContainer(
+                                'Essentials',
+                                'https://yourdomain.com/assets/images/image_3.png',
+                                _essentialsScale,
+                                (value) => setState(() {
+                                  _essentialsScale = value;
+                                }),
                               ),
-                            ),
-                          ],
+                              _buildHoverableContainer(
+                                'Price Alert',
+                                'https://yourdomain.com/assets/images/price_alert.png',
+                                _priceAlertScale,
+                                (value) => setState(() {
+                                  _priceAlertScale = value;
+                                }),
+                              ),
+                              _buildHoverableContainer(
+                                'Crowd Prediction',
+                                'https://yourdomain.com/assets/images/crowd_prediction.png',
+                                _crowdPredictionScale,
+                                (value) => setState(() {
+                                  _crowdPredictionScale = value;
+                                }),
+                              ),
+                              _buildHoverableContainer(
+                                'Document Management',
+                                'https://yourdomain.com/assets/images/document_management.png',
+                                _documentManagementScale,
+                                (value) => setState(() {
+                                  _documentManagementScale = value;
+                                }),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -284,6 +209,53 @@ class TravelPage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHoverableContainer(String title, String imageUrl, double scale,
+      Function(double) onHoverChange) {
+    return MouseRegion(
+      onEnter: (_) => onHoverChange(1.1),
+      onExit: (_) => onHoverChange(1.0),
+      child: AnimatedScale(
+        scale: scale,
+        duration: Duration(milliseconds: 200),
+        child: Container(
+          width: 150,
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: Color(0xFFD9D9D9)),
+            borderRadius: BorderRadius.circular(45),
+            color: Color(0xFFD9D9D9),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.comfortaa(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                width: 49,
+                height: 49,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(imageUrl),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
