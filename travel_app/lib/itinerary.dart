@@ -1,97 +1,109 @@
 import 'package:flutter/material.dart';
 
-class ItineraryPage extends StatelessWidget {
+class ItineraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String _location =
+        ''; // Location is defined here, but it won't change in StatelessWidget
+
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.blueGrey[50],
+      body: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(
+              255, 242, 232, 205), // Beige color for the background
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Top bar with sun, plane, and user icons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.sunny),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(Icons.flight),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(Icons.person),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-
-            // Title and search bar
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Itinerary',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height *
+                    0.3, // 30% of screen height
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/india.jpg'),
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(height: 8.0),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Enter location',
-                      suffixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-
-            // Day-wise itinerary sections
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  _buildDaySection(1),
-                  _buildDaySection(2),
-                  _buildDaySection(3),
-                  _buildDaySection(4),
-                  _buildDaySection(5),
-                ],
+            SizedBox(height: 20),
+            Text(
+              'Itinerary',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Georgia',
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter location:',
+                hintStyle: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
+              onChanged: (value) {
+                // Since this is StatelessWidget, you would normally
+                // handle this differently, like with a callback.
+                _location = value;
+              },
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(12.0),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 242, 232, 205),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: Text(
+                  'Itinerary for $_location',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
-
-            // Customize button
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Customize'),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle customize action
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.black),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                ),
+                child: Text(
+                  'CUSTOMIZE',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDaySection(int dayNumber) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Day $dayNumber:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Add activities',
-          ),
-        ),
-        SizedBox(height: 16.0),
-      ],
     );
   }
 }
