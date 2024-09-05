@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/essentials.dart';
+import 'package:travel_app/itinerary.dart';
 
 class TravelPage extends StatefulWidget {
   @override
@@ -21,11 +23,11 @@ class _TravelPageState extends State<TravelPage> {
       body: Stack(
         children: [
           Positioned(
-            left: -28,
-            top: -38,
+            left: 0,
+            top: 0,
             child: Container(
-              width: 371,
-              height: 814,
+              width: 410,
+              height: 850,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -37,7 +39,7 @@ class _TravelPageState extends State<TravelPage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(17, 24, 0, 15),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,8 +96,8 @@ class _TravelPageState extends State<TravelPage> {
                                     borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        'https://yourdomain.com/assets/images/people_1.png',
+                                      image: AssetImage(
+                                        'assets/user.png',
                                       ),
                                     ),
                                   ),
@@ -139,43 +141,93 @@ class _TravelPageState extends State<TravelPage> {
                 children: [
                   _buildHoverableContainer(
                     'Itinerary',
-                    'https://yourdomain.com/assets/images/calendar_1.png',
+                    'assets/itinry.png',
                     _itineraryScale,
                     (value) => setState(() {
                       _itineraryScale = value;
                     }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItineraryScreen()),
+                      );
+                    },
                   ),
                   _buildHoverableContainer(
                     'Essentials',
-                    'https://yourdomain.com/assets/images/image_3.png',
+                    'assets/to-do-list.png',
                     _essentialsScale,
                     (value) => setState(() {
                       _essentialsScale = value;
                     }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EssentialsWidget()),
+                      );
+                    },
                   ),
                   _buildHoverableContainer(
                     'Price Alert',
-                    'https://yourdomain.com/assets/images/price_alert.png',
+                    'assets/price-list.png',
                     _priceAlertScale,
                     (value) => setState(() {
                       _priceAlertScale = value;
                     }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItineraryScreen()),
+                      );
+                    },
                   ),
                   _buildHoverableContainer(
                     'Crowd Prediction',
-                    'https://yourdomain.com/assets/images/crowd_prediction.png',
+                    'assets/people .png',
                     _crowdPredictionScale,
                     (value) => setState(() {
                       _crowdPredictionScale = value;
                     }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItineraryScreen()),
+                      );
+                    },
                   ),
                   _buildHoverableContainer(
                     'Document Management',
-                    'https://yourdomain.com/assets/images/document_management.png',
+                    'assets/documents.png',
                     _documentManagementScale,
                     (value) => setState(() {
                       _documentManagementScale = value;
                     }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItineraryScreen()),
+                      );
+                    },
+                  ),
+                  _buildHoverableContainer(
+                    'AR-VR',
+                    'assets/virtual-tour.png',
+                    _documentManagementScale,
+                    (value) => setState(() {
+                      _documentManagementScale = value;
+                    }),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ItineraryScreen()),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -187,7 +239,7 @@ class _TravelPageState extends State<TravelPage> {
   }
 
   Widget _buildHoverableContainer(String title, String imageUrl, double scale,
-      Function(double) onHoverChange) {
+      Function(double) onHoverChange, Null Function() param4,) {
     return MouseRegion(
       onEnter: (_) => onHoverChange(1.1),
       onExit: (_) => onHoverChange(1.0),

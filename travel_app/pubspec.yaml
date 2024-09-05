@@ -73,6 +73,12 @@ flutter:
   assets:
     - assets/bg.png
     - assets/india.jpg
+    - assets/itinry.png
+    - assets/to-do-list.png
+    - assets\price-list.png
+    - assets\people .png
+    - assets/documents.png
+    - assets/virtual-tour.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
