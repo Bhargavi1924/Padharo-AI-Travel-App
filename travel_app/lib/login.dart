@@ -1,176 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'signup.dart'; // Import the Signup page
 
-class LoginPageWidget extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String? errorMessage;
+
+  Future<void> _signIn() async {
+    try {
+      await _auth.setPersistence(
+          Persistence.LOCAL); // Add this line to set persistence mode
+      await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      // Navigate to the home page after successful login
+      Navigator.pushReplacementNamed(context, '/home');
+    } catch (e) {
+      setState(() {
+        errorMessage = e.toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(223, 236, 248, 1),
-      body: Center(
-        child: Container(
-          width: 360,
-          height: 800,
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(223, 236, 248, 1),
-          ),
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: 104,
-                left: 25,
-                child: Container(
-                  width: 310,
-                  height: 667,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
-                  ),
-                ),
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
               ),
-              Positioned(
-                top: 55,
-                left: 117,
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _signIn,
+              child: const Text('Login'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Navigate to the Signup page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignupPage()),
+                );
+              },
+              child: const Text('Don\'t have an account? Sign Up'),
+            ),
+            if (errorMessage != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'LOGIN',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Comfortaa',
-                    fontSize: 36,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  errorMessage!,
+                  style: TextStyle(color: Colors.red),
                 ),
               ),
-              Positioned(
-                top: 172,
-                left: 53,
-                child: Text(
-                  'Username or Email',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Comfortaa',
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 199,
-                left: 53,
-                child: Container(
-                  width: 254,
-                  height: 62,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
-                      width: 1,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter your username or email',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 313,
-                left: 53,
-                child: Text(
-                  'Password',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Comfortaa',
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 338,
-                left: 53,
-                child: Container(
-                  width: 254,
-                  height: 62,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
-                      width: 1,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter your password',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 485,
-                left: 109,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Handle login action
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(0, 0, 0, 0.25),
-                    minimumSize: Size(154, 51),
-                  ),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Comfortaa',
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 555,
-                left: 50,
-                child: GestureDetector(
-                  onTap: () {
-                    // Navigate to the signup page
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SignupPageWidget()),
-                    );
-                  },
-                  child: Text(
-                    'Don’t have an account? Sign Up\nForgot password?',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      fontFamily: 'Comfortaa',
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );
   }
 }
-
-void main() => runApp(MaterialApp(home: LoginPageWidget()));
