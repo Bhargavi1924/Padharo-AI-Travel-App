@@ -43,10 +43,13 @@ dependencies:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   vector_math: ^2.1.4
+  http: ^1.2.2
+  google_generative_ai: ^0.4.6 # This is a placeholder version
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
