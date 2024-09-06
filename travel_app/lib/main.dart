@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ItineraryScreen(),
+      home: LoginPage(),
       routes: {
         '/home': (context) => TravelPage(),
       },
