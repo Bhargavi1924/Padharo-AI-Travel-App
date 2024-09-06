@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travel_app/customize.dart';
 
-class ItineraryScreen extends StatefulWidget {
+class CustomizeWidget extends StatefulWidget {
   @override
-  _ItineraryScreenState createState() => _ItineraryScreenState();
+  _CustomizeWidgetState createState() => _CustomizeWidgetState();
 }
 
-class _ItineraryScreenState extends State<ItineraryScreen> {
+class _CustomizeWidgetState extends State<CustomizeWidget> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _daysController = TextEditingController();
   String _itinerary =
@@ -19,7 +18,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
   ChatSession? _chat;
 
   final String _context =
-      "You are an expert itinerary planner. Given a location in India and a number of days, generate a detailed itinerary for that location. Also provide restaurant and hotel suggestions";
+      "You are an expert itinerary planner. You need to read the given location and days in the Itinerary page and then change the previous itinerary based on the restaurants and places added by the user or something that is deleted from the previous itinerary when clicked on the modify itinerary";
 
   final RegExp boldExp =
       RegExp(r'\*\*(.*?)\*\*'); // Regex for bold text between **
@@ -35,7 +34,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
   void _initializeGeminiAPI() {
     try {
       final apiKey =
-          'AIzaSyB3ViKQEbbD-ajd8aTDoQoTZtDqNIxcq60'; // Replace this API key with your own if needed
+          'AIzaSyD4Lhqt6RGEfZ2Zszztg3s_lqgaJ3dVtnU'; // Replace this API key with your own if needed
       _model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
       _chat = _model?.startChat(history: [Content.text(_context)]);
       print('Gemini API initialized successfully for Itinerary');
@@ -196,50 +195,39 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
             ),
             SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.only(
+                  left:
+                      38.0), // Add left padding of 16 pixels (or any value you prefer)
+              child: Text(
+                'CUSTOMIZE',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Georgia',
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28.0),
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _locationController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter location',
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextField(
+                            controller: _locationController,
+                            decoration: InputDecoration(
+                              labelText: 'Add preferences',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                      onSubmitted: (_) => _generateItinerary(),
+                      ],
                     ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      controller: _daysController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: 'No. of days',
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                      onSubmitted: (_) => _generateItinerary(),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: _generateItinerary,
-                    color: Colors.black,
                   ),
                 ],
               ),
@@ -276,22 +264,14 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CustomizeWidget(),
-                      ),
-                    );
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
                     side: BorderSide(color: Colors.black),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   ),
                   child: Text(
-                    'Customize',
+                    'Modify Itinerary',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
