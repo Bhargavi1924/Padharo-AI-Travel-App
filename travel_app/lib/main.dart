@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:travel_app/signup.dart';
 import 'login.dart';
 import 'homepage.dart';
 
@@ -36,9 +37,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TravelPage(),
+      home: SignupPage(),
       routes: {
-        '/home': (context) => TravelPage(),
+        '/home': (context) => LoginPage(),
       },
     );
   }
