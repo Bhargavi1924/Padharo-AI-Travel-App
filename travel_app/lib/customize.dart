@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomizeWidget extends StatefulWidget {
+  const CustomizeWidget({super.key});
+
   @override
   _CustomizeWidgetState createState() => _CustomizeWidgetState();
 }
@@ -33,7 +35,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
 
   void _initializeGeminiAPI() {
     try {
-      final apiKey =
+      const apiKey =
           'AIzaSyD4Lhqt6RGEfZ2Zszztg3s_lqgaJ3dVtnU'; // Replace this API key with your own if needed
       _model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
       _chat = _model?.startChat(history: [Content.text(_context)]);
@@ -138,8 +140,8 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       body: Container(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 242, 232, 205),
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 242, 232, 205),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -147,13 +149,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
                   ),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/india.jpg'),
                         fit: BoxFit.cover,
@@ -165,7 +167,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                   top: 20,
                   left: 16,
                   child: IconButton(
-                    icon: Icon(Icons.menu, color: Colors.black),
+                    icon: const Icon(Icons.menu, color: Colors.black),
                     onPressed: () {},
                   ),
                 ),
@@ -176,15 +178,15 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                     radius: 20, // Smaller circle
                     backgroundColor: Colors.white,
                     child: IconButton(
-                      icon: Icon(Icons.person, color: Colors.black),
+                      icon: const Icon(Icons.person, color: Colors.black),
                       onPressed: () {},
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Itinerary',
               style: TextStyle(
                 fontSize: 24,
@@ -193,8 +195,8 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            Padding(
+            const SizedBox(height: 20),
+            const Padding(
               padding: EdgeInsets.only(
                   left:
                       38.0), // Add left padding of 16 pixels (or any value you prefer)
@@ -208,7 +210,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                 textAlign: TextAlign.left,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 28.0),
               child: Row(
@@ -220,7 +222,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           padding: const EdgeInsets.all(12.0),
                           child: TextField(
                             controller: _locationController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Add preferences',
                               border: OutlineInputBorder(),
                             ),
@@ -232,7 +234,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(12.0),
@@ -245,7 +247,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: _isLoading
-                        ? Center(
+                        ? const Center(
                             child:
                                 CircularProgressIndicator(), // Loading indicator
                           )
@@ -258,7 +260,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -267,10 +269,11 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
-                    side: BorderSide(color: Colors.black),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    side: const BorderSide(color: Colors.black),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Modify Itinerary',
                     style: TextStyle(
                       color: Colors.black,

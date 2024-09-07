@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'signup.dart'; // Import the Signup page
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -31,12 +33,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(223, 236, 248, 1),
+      backgroundColor: const Color.fromRGBO(223, 236, 248, 1),
       body: Center(
         child: Container(
           width: 360,
           height: 800,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color.fromRGBO(223, 236, 248, 1),
           ),
           child: Stack(
@@ -49,11 +51,11 @@ class _LoginPageState extends State<LoginPage> {
                   height: 667,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35),
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 55,
                 left: 117,
                 child: Text(
@@ -67,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 172,
                 left: 53,
                 child: Text(
@@ -88,10 +90,10 @@ class _LoginPageState extends State<LoginPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -99,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: TextField(
                       controller: _emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your username or email',
                       ),
@@ -107,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 313,
                 left: 53,
                 child: Text(
@@ -128,10 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -140,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your password',
                       ),
@@ -154,10 +156,10 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: _signIn,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(0, 0, 0, 0.25),
-                    minimumSize: Size(154, 51),
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0.25),
+                    minimumSize: const Size(154, 51),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Login',
                     style: TextStyle(
                       color: Colors.white,
@@ -178,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(builder: (context) => SignupPage()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Don’t have an account? Sign Up\nForgot password?',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -196,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                   left: 50,
                   child: Text(
                     errorMessage!,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ),
             ],

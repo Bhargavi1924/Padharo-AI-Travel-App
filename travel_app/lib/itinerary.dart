@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:travel_app/customize.dart';
-
 import 'package:travel_app/model/itinerary_model.dart';
 import 'package:travel_app/services/itinerary_services.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 
 class ItineraryScreen extends StatefulWidget {
+  const ItineraryScreen({super.key});
+
   @override
   _ItineraryScreenState createState() => _ItineraryScreenState();
 }
@@ -18,19 +15,16 @@ class ItineraryScreen extends StatefulWidget {
 class _ItineraryScreenState extends State<ItineraryScreen> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _daysController = TextEditingController();
-  String _itinerary =
-      'Your Itinerary will be displayed here.'; // Itinerary result
-  bool _isLoading = false; // Flag to track loading state
+  String _itinerary = 'Your Itinerary will be displayed here.';
+  bool _isLoading = false;
   GenerativeModel? _model;
   ChatSession? _chat;
 
   final String _context =
       "You are an expert itinerary planner. Given a location in India and a number of days, generate a detailed itinerary for that location. Also provide restaurant and hotel suggestions";
 
-  final RegExp boldExp =
-      RegExp(r'\*\*(.*?)\*\*'); // Regex for bold text between **
-  final RegExp bulletExp = RegExp(
-      r'(^|\n)-\s*(.*?)(?=\n|$)'); // Regex for bullet points starting with -
+  final RegExp boldExp = RegExp(r'\*\*(.*?)\*\*');
+  final RegExp bulletExp = RegExp(r'(^|\n)-\s*(.*?)(?=\n|$)');
   final ItineraryService _itineraryService = ItineraryService();
 
   @override
@@ -41,8 +35,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
 
   void _initializeGeminiAPI() {
     try {
-      final apiKey =
-          'AIzaSyB3ViKQEbbD-ajd8aTDoQoTZtDqNIxcq60'; // Replace this API key with your own if needed
+      const apiKey = 'AIzaSyB3ViKQEbbD-ajd8aTDoQoTZtDqNIxcq60';
       _model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
       _chat = _model?.startChat(history: [Content.text(_context)]);
       print('Gemini API initialized successfully for Itinerary');
@@ -76,8 +69,8 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
 
     try {
       setState(() {
-        _isLoading = true; // Set loading flag to true
-        _itinerary = 'Loading...'; // Display loading text
+        _isLoading = true;
+        _itinerary = 'Loading...';
       });
 
       print('Sending location and days to Gemini API: $location, $days');
@@ -104,7 +97,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
       });
     } finally {
       setState(() {
-        _isLoading = false; // Set loading flag to false
+        _isLoading = false;
       });
     }
   }
@@ -113,7 +106,6 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
     final List<TextSpan> spans = [];
     int lastIndex = 0;
 
-    // Match for bold text
     for (Match match in boldExp.allMatches(message)) {
       if (match.start > lastIndex) {
         spans.add(TextSpan(text: message.substring(lastIndex, match.start)));
@@ -125,7 +117,6 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
       lastIndex = match.end;
     }
 
-    // Handle any remaining text
     if (lastIndex < message.length) {
       spans.add(TextSpan(text: message.substring(lastIndex)));
     }
@@ -134,7 +125,6 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
   }
 
   String _formatMessage(String message) {
-    // Replace bullet points
     String formattedMessage = message.replaceAllMapped(bulletExp, (match) {
       return '\n• ${match.group(2)}';
     });
@@ -144,16 +134,13 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
 
   Future<void> _addItinerary(String description) async {
     final itinerary = Itinerary(
-      id: DateTime.now()
-          .millisecondsSinceEpoch
-          .toString(), // Generate a unique ID
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
       title: 'My Itinerary',
       description: description,
       startDate: DateTime.now(),
-      endDate: DateTime.now().add(Duration(days: 5)),
+      endDate: DateTime.now().add(const Duration(days: 5)),
     );
 
-    // Call the save function
     try {
       await _itineraryService.addItinerary(itinerary);
       print('Itinerary added successfully!');
@@ -165,10 +152,71 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Home
+              },
+            ),
+            ListTile(
+              title: const Text('Essentials'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Essentials
+              },
+            ),
+            ListTile(
+              title: const Text('Price Alert'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Price Alert
+              },
+            ),
+            ListTile(
+              title: const Text('Crowd Prediction'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Crowd Prediction
+              },
+            ),
+            ListTile(
+              title: const Text('Document Management'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Document Management
+              },
+            ),
+            ListTile(
+              title: const Text('Sign Up'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Sign Up
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.blueGrey[50],
       body: Container(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 242, 232, 205),
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 242, 232, 205),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -176,13 +224,13 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
                   ),
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/india.jpg'),
                         fit: BoxFit.cover,
@@ -194,26 +242,28 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                   top: 20,
                   left: 16,
                   child: IconButton(
-                    icon: Icon(Icons.menu, color: Colors.black),
-                    onPressed: () {},
+                    icon: const Icon(Icons.menu, color: Colors.black),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
                   ),
                 ),
                 Positioned(
                   top: 20,
                   right: 16,
                   child: CircleAvatar(
-                    radius: 20, // Smaller circle
+                    radius: 20,
                     backgroundColor: Colors.white,
                     child: IconButton(
-                      icon: Icon(Icons.person, color: Colors.black),
+                      icon: const Icon(Icons.person, color: Colors.black),
                       onPressed: () {},
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Itinerary',
               style: TextStyle(
                 fontSize: 24,
@@ -222,7 +272,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -232,47 +282,47 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                       controller: _locationController,
                       decoration: InputDecoration(
                         hintText: 'Enter location',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.black),
                         ),
                       ),
                       onSubmitted: (_) => _generateItinerary(),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: _daysController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: 'No. of days',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.black),
                         ),
                       ),
                       onSubmitted: (_) => _generateItinerary(),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   IconButton(
-                    icon: Icon(Icons.search),
+                    icon: const Icon(Icons.search),
                     onPressed: _generateItinerary,
                     color: Colors.black,
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(12.0),
@@ -285,9 +335,8 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: _isLoading
-                        ? Center(
-                            child:
-                                CircularProgressIndicator(), // Loading indicator
+                        ? const Center(
+                            child: CircularProgressIndicator(),
                           )
                         : RichText(
                             text: TextSpan(
@@ -298,7 +347,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -314,11 +363,11 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
-                    side: BorderSide(color: Colors.black),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                    side: const BorderSide(color: Colors.black),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 24.0),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Customize',
                     style: TextStyle(
                       color: Colors.black,

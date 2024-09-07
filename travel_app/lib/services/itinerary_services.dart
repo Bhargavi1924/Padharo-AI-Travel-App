@@ -1,7 +1,6 @@
 // lib/services/itinerary_service.dart
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/model/itinerary_model.dart';
 
 class ItineraryService {

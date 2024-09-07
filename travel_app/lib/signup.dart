@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:travel_app/login.dart';
 
 class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
   @override
   _SignupPageState createState() => _SignupPageState();
 }
@@ -34,7 +36,7 @@ class _SignupPageState extends State<SignupPage> {
 
       // If the user is successfully created, show a success message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Successfully Registered!'),
           backgroundColor: Colors.green,
         ),
@@ -55,12 +57,12 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(223, 236, 248, 1),
+      backgroundColor: const Color.fromRGBO(223, 236, 248, 1),
       body: Center(
         child: Container(
           width: 360,
           height: 800,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color.fromRGBO(223, 236, 248, 1),
           ),
           child: Stack(
@@ -73,11 +75,11 @@ class _SignupPageState extends State<SignupPage> {
                   height: 664,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35),
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 53,
                 left: 111,
                 child: Text(
@@ -90,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 157,
                 left: 53,
                 child: Text(
@@ -110,10 +112,10 @@ class _SignupPageState extends State<SignupPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -121,7 +123,7 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: TextField(
                       controller: _usernameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your username',
                       ),
@@ -129,7 +131,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 260,
                 left: 53,
                 child: Text(
@@ -149,10 +151,10 @@ class _SignupPageState extends State<SignupPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -160,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: TextField(
                       controller: _phoneController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your phone number',
                       ),
@@ -168,7 +170,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 363,
                 left: 53,
                 child: Text(
@@ -188,10 +190,10 @@ class _SignupPageState extends State<SignupPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -199,7 +201,7 @@ class _SignupPageState extends State<SignupPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: TextField(
                       controller: _emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your email',
                       ),
@@ -207,7 +209,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 466,
                 left: 53,
                 child: Text(
@@ -227,10 +229,10 @@ class _SignupPageState extends State<SignupPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -239,7 +241,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: TextField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Enter your password',
                       ),
@@ -247,7 +249,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 569,
                 left: 53,
                 child: Text(
@@ -267,10 +269,10 @@ class _SignupPageState extends State<SignupPage> {
                   width: 254,
                   height: 62,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(149, 186, 221, 0.22),
+                    color: const Color.fromRGBO(149, 186, 221, 0.22),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: Color.fromRGBO(149, 186, 221, 1),
+                      color: const Color.fromRGBO(149, 186, 221, 1),
                       width: 1,
                     ),
                   ),
@@ -279,7 +281,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: TextField(
                       controller: _confirmPasswordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Confirm your password',
                       ),
@@ -293,10 +295,10 @@ class _SignupPageState extends State<SignupPage> {
                 child: ElevatedButton(
                   onPressed: _signUp,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(0, 0, 0, 0.25),
-                    minimumSize: Size(154, 51),
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0.25),
+                    minimumSize: const Size(154, 51),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Register',
                     style: TextStyle(
                       color: Colors.white,
@@ -314,7 +316,7 @@ class _SignupPageState extends State<SignupPage> {
                     // Navigate back to login page
                     Navigator.pop(context);
                   },
-                  child: Text(
+                  child: const Text(
                     'Already have an account? Login',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -332,7 +334,7 @@ class _SignupPageState extends State<SignupPage> {
                   left: 50,
                   child: Text(
                     errorMessage!,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ),
             ],
