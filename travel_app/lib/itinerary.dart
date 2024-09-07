@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< Updated upstream
+
 import 'package:travel_app/customize.dart';
-=======
+
 import 'package:travel_app/model/itinerary_model.dart';
 import 'package:travel_app/services/itinerary_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
->>>>>>> Stashed changes
+
 
 class ItineraryScreen extends StatefulWidget {
   @override
