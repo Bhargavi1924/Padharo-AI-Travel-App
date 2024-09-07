@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+<<<<<<< Updated upstream
 import 'package:travel_app/customize.dart';
 import 'package:travel_app/essentials.dart';
 import 'package:travel_app/itinerary.dart';
+=======
+import 'package:travel_app/itinerary.dart';
+import 'package:travel_app/model/itinerary_model.dart';
+>>>>>>> Stashed changes
 import 'login.dart';
 import 'homepage.dart';
 
@@ -39,7 +45,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+<<<<<<< Updated upstream
       home: LoginPage(),
+=======
+      home: ItineraryScreen(),
+>>>>>>> Stashed changes
       routes: {
         '/home': (context) => TravelPage(),
       },

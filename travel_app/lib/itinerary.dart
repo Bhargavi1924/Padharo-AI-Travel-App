@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
+<<<<<<< Updated upstream
 import 'package:travel_app/customize.dart';
+=======
+import 'package:travel_app/model/itinerary_model.dart';
+import 'package:travel_app/services/itinerary_services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+>>>>>>> Stashed changes
 
 class ItineraryScreen extends StatefulWidget {
   @override
@@ -25,6 +31,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
       RegExp(r'\*\*(.*?)\*\*'); // Regex for bold text between **
   final RegExp bulletExp = RegExp(
       r'(^|\n)-\s*(.*?)(?=\n|$)'); // Regex for bullet points starting with -
+  final ItineraryService _itineraryService = ItineraryService();
 
   @override
   void initState() {
@@ -82,6 +89,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
         setState(() {
           _itinerary = _formatMessage(botResponse);
         });
+        await _addItinerary(botResponse);
       } else {
         setState(() {
           _itinerary =
@@ -132,6 +140,26 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
     });
 
     return formattedMessage;
+  }
+
+  Future<void> _addItinerary(String description) async {
+    final itinerary = Itinerary(
+      id: DateTime.now()
+          .millisecondsSinceEpoch
+          .toString(), // Generate a unique ID
+      title: 'My Itinerary',
+      description: description,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(Duration(days: 5)),
+    );
+
+    // Call the save function
+    try {
+      await _itineraryService.addItinerary(itinerary);
+      print('Itinerary added successfully!');
+    } catch (e) {
+      print('Error adding itinerary: $e');
+    }
   }
 
   @override
