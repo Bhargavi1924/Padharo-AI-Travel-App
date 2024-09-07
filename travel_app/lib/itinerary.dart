@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/customize.dart';
+import 'package:travel_app/essentials.dart';
+import 'package:travel_app/homepage.dart';
 import 'package:travel_app/model/itinerary_model.dart';
 import 'package:travel_app/services/itinerary_services.dart';
+import 'package:travel_app/signup.dart';
 
 class ItineraryScreen extends StatefulWidget {
   const ItineraryScreen({super.key});
@@ -158,10 +161,10 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blueGrey,
+                color: Color.fromARGB(255, 212, 147, 81),
               ),
               child: Text(
-                'Menu',
+                'Guide',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -169,215 +172,240 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               ),
             ),
             ListTile(
-              title: const Text('Home'),
+              leading: Icon(Icons.calendar_today),
+              title: Text('Itinerary'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Home
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                );
               },
             ),
             ListTile(
-              title: const Text('Essentials'),
+              leading: Icon(Icons.home),
+              title: Text('Home Page'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Essentials
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TravelPage()),
+                );
               },
             ),
             ListTile(
-              title: const Text('Price Alert'),
+              leading: Icon(Icons.person_add),
+              title: Text('Sign Up'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Price Alert
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignupPage()),
+                );
               },
             ),
             ListTile(
-              title: const Text('Crowd Prediction'),
+              leading: Icon(Icons.list),
+              title: Text('Essentials'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Crowd Prediction
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                );
               },
             ),
             ListTile(
-              title: const Text('Document Management'),
+              leading: Icon(Icons.price_change),
+              title: Text('Price Alert'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Document Management
+                Navigator.pop(context); // Handle menu actions here
               },
             ),
             ListTile(
-              title: const Text('Sign Up'),
+              leading: Icon(Icons.people),
+              title: Text('Crowd Prediction'),
               onTap: () {
-                Navigator.pop(context);
-                // Navigate to Sign Up
+                Navigator.pop(context); // Handle menu actions here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.document_scanner),
+              title: Text('Document Management'),
+              onTap: () {
+                Navigator.pop(context); // Handle menu actions here
               },
             ),
           ],
         ),
       ),
       backgroundColor: Colors.blueGrey[50],
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 242, 232, 205),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/india.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  left: 16,
-                  child: IconButton(
-                    icon: const Icon(Icons.menu, color: Colors.black),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  right: 16,
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      icon: const Icon(Icons.person, color: Colors.black),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Itinerary',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Georgia',
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
+      body: Builder(
+        builder: (context) => Container(
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 242, 232, 205),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Stack(
                 children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _locationController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter location',
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.3,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/india.jpg'),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      onSubmitted: (_) => _generateItinerary(),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: TextField(
-                      controller: _daysController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: 'No. of days',
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
-                        ),
+                  Positioned(
+                    top: 20,
+                    left: 16,
+                    child: IconButton(
+                      icon: const Icon(Icons.menu, color: Colors.black),
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: 20,
+                    right: 16,
+                    child: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: Colors.white,
+                      child: IconButton(
+                        icon: const Icon(Icons.person, color: Colors.black),
+                        onPressed: () {},
                       ),
-                      onSubmitted: (_) => _generateItinerary(),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: _generateItinerary,
-                    color: Colors.black,
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 242, 232, 205),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : RichText(
-                            text: TextSpan(
-                              children: _parseMessage(_itinerary),
-                            ),
+              const SizedBox(height: 20),
+              const Text(
+                'Itinerary',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Georgia',
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _locationController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter location',
+                          hintStyle: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
                           ),
-                  ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                        ),
+                        onSubmitted: (_) => _generateItinerary(),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        controller: _daysController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: 'No. of days',
+                          hintStyle: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                        ),
+                        onSubmitted: (_) => _generateItinerary(),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: _generateItinerary,
+                      color: Colors.black,
+                    ),
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 30.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CustomizeWidget(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
-                    side: const BorderSide(color: Colors.black),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 24.0),
-                  ),
-                  child: const Text(
-                    'Customize',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+              const SizedBox(height: 20),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 242, 232, 205),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: _isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : RichText(
+                              text: TextSpan(
+                                children: _parseMessage(_itinerary),
+                              ),
+                            ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CustomizeWidget(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
+                      side: const BorderSide(color: Colors.black),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 24.0),
+                    ),
+                    child: const Text(
+                      'Customize',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
