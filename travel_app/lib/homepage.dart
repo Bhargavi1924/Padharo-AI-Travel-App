@@ -61,17 +61,6 @@ class _TravelPageState extends State<TravelPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.person_add),
-              title: const Text('Sign Up'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
-                );
-              },
-            ),
-            ListTile(
               leading: const Icon(Icons.list),
               title: const Text('Essentials'),
               onTap: () {
@@ -157,7 +146,7 @@ class _TravelPageState extends State<TravelPage> {
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
                   children: [
