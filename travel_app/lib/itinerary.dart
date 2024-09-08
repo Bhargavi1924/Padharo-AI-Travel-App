@@ -7,6 +7,7 @@ import 'package:travel_app/homepage.dart';
 import 'package:travel_app/model/itinerary_model.dart';
 import 'package:travel_app/services/itinerary_services.dart';
 import 'package:travel_app/signup.dart';
+import 'package:travel_app/profile.dart'; // Ensure you import Profile
 
 class ItineraryScreen extends StatefulWidget {
   const ItineraryScreen({super.key});
@@ -194,17 +195,6 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Sign Up'),
-              onTap: () {
-                Navigator.pop(context); // Close the drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
-                );
-              },
-            ),
-            ListTile(
               leading: Icon(Icons.list),
               title: Text('Essentials'),
               onTap: () {
@@ -283,7 +273,13 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                       backgroundColor: Colors.white,
                       child: IconButton(
                         icon: const Icon(Icons.person, color: Colors.black),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileWidget()),
+                          );
+                        },
                       ),
                     ),
                   ),

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/homepage.dart';
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/signup.dart';
+import 'package:travel_app/profile.dart';
 
 class EssentialsWidget extends StatefulWidget {
   @override
@@ -95,17 +96,6 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Sign Up'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
-                );
-              },
-            ),
-            ListTile(
               leading: Icon(Icons.list),
               title: Text('Essentials'),
               onTap: () {
@@ -152,6 +142,15 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Color.fromRGBO(217, 217, 217, 1),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.person),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfileWidget()),
+                    );
+                  },
                 ),
               ),
             ),

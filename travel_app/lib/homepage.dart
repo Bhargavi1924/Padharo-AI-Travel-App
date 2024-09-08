@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/essentials.dart';
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/signup.dart';
+import 'package:travel_app/profile.dart';
 
 class TravelPage extends StatefulWidget {
   const TravelPage({super.key});
@@ -13,7 +13,6 @@ class TravelPage extends StatefulWidget {
 }
 
 class _TravelPageState extends State<TravelPage> {
-  // Scale factors for hover effect
   double _itineraryScale = 1.0;
   double _essentialsScale = 1.0;
   double _priceAlertScale = 1.0;
@@ -23,23 +22,6 @@ class _TravelPageState extends State<TravelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Padharo'),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon:
-                  const Icon(Icons.menu), // Three-line widget (hamburger icon)
-              onPressed: () {
-                Scaffold.of(context).openDrawer(); // Opens the Drawer
-              },
-            );
-          },
-        ),
-        backgroundColor:
-            Colors.transparent, // Make the AppBar background transparent
-        elevation: 0, // Remove AppBar shadow
-      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -60,7 +42,7 @@ class _TravelPageState extends State<TravelPage> {
               leading: const Icon(Icons.calendar_today),
               title: const Text('Itinerary'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ItineraryScreen()),
@@ -71,8 +53,7 @@ class _TravelPageState extends State<TravelPage> {
               leading: const Icon(Icons.home),
               title: const Text('Home Page'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
-                // Navigate to the Home Page
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => TravelPage()),
@@ -83,7 +64,7 @@ class _TravelPageState extends State<TravelPage> {
               leading: const Icon(Icons.person_add),
               title: const Text('Sign Up'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignupPage()),
@@ -94,12 +75,10 @@ class _TravelPageState extends State<TravelPage> {
               leading: const Icon(Icons.list),
               title: const Text('Essentials'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          EssentialsWidget()), // Navigate to EssentialsWidget
+                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
                 );
               },
             ),
@@ -107,21 +86,21 @@ class _TravelPageState extends State<TravelPage> {
               leading: const Icon(Icons.price_change),
               title: const Text('Price Alert'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: const Icon(Icons.people),
               title: const Text('Crowd Prediction'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: const Icon(Icons.document_scanner),
               title: const Text('Document Management'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
           ],
@@ -139,10 +118,40 @@ class _TravelPageState extends State<TravelPage> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
-                    'assets/bg.png', // Adjust path as necessary
+                    'assets/bg.png',
                   ),
                 ),
               ),
+            ),
+          ),
+          Positioned(
+            top: 40, // Adjust the position as needed
+            left: 10,
+            child: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+              },
+            ),
+          ),
+          Positioned(
+            top: 40, // Adjust the vertical position as needed
+            right: 10, // Adjust the horizontal position as needed
+            child: IconButton(
+              icon: Icon(
+                Icons.person, // Profile icon to represent a person
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileWidget()),
+                );
+              },
             ),
           ),
           Container(
@@ -150,76 +159,12 @@ class _TravelPageState extends State<TravelPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Top content
                 Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.fromLTRB(1.9, 0, 1.9, 68),
+                      margin: const EdgeInsets.fromLTRB(0, 2, 0, 20),
                       child: Align(
-                        alignment: Alignment.topLeft,
-                        child: SizedBox(
-                          width: 322.1,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 28),
-                                child: SizedBox(
-                                  width: 38.2,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            0, 0, 0, 8),
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                        ),
-                                        width: 38.2,
-                                        height: 0,
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.fromLTRB(
-                                            1.1, 0, 12.9, 0),
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFD9D9D9),
-                                        ),
-                                        width: 24.2,
-                                        height: 0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.fromLTRB(0, 2, 0, 0),
-                                child: Container(
-                                  width: 42,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFD9D9D9),
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                        'assets/user.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 75, 20),
-                      child: Align(
-                        alignment: Alignment.topCenter,
+                        alignment: Alignment.center,
                         child: Text(
                           'PADHARO',
                           style: GoogleFonts.philosopher(
@@ -236,12 +181,8 @@ class _TravelPageState extends State<TravelPage> {
               ],
             ),
           ),
-          // Menu icon for opening the drawer
-
-          // Bottom scrollable row
           Positioned(
-            bottom:
-                30, // Adjust this value to control how much above the bottom edge it appears
+            bottom: 30,
             left: 0,
             right: 0,
             child: SingleChildScrollView(
@@ -387,7 +328,7 @@ class _TravelPageState extends State<TravelPage> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(imageUrl),
+                      image: AssetImage(imageUrl),
                     ),
                   ),
                 ),

@@ -10,6 +10,8 @@ import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/model/itinerary_model.dart';
 
+import 'package:travel_app/profile.dart';
+
 import 'login.dart';
 import 'homepage.dart';
 
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/home': (context) => TravelPage(),
+        '/profile': (context) => ProfileWidget(), // Add this line
       },
     );
   }

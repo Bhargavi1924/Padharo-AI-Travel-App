@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/essentials.dart';
+import 'package:travel_app/homepage.dart';
+import 'package:travel_app/itinerary.dart';
+import 'package:travel_app/profile.dart';
 
 class CustomizeWidget extends StatefulWidget {
   const CustomizeWidget({super.key});
@@ -15,12 +19,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
   final TextEditingController _daysController = TextEditingController();
   String _itinerary =
       'Your Itinerary will be displayed here.'; // Itinerary result
+  String? _savedItinerary; // To save the generated itinerary
   bool _isLoading = false; // Flag to track loading state
   GenerativeModel? _model;
   ChatSession? _chat;
 
   final String _context =
-      "You are an expert itinerary planner. You need to read the given location and days in the Itinerary page and then change the previous itinerary based on the restaurants and places added by the user or something that is deleted from the previous itinerary when clicked on the modify itinerary";
+      "You are an expert itinerary planner. You need to read the given location and days in the Itinerary page and then change the previous itinerary based on the preferences added by the user or something that is deleted from the previous itinerary when clicked on the modify itinerary.";
 
   final RegExp boldExp =
       RegExp(r'\*\*(.*?)\*\*'); // Regex for bold text between **
@@ -51,7 +56,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
 
     if (location.isEmpty || days.isEmpty) {
       setState(() {
-        _itinerary = 'Your Itinerary will be displayed here.';
+        _itinerary = 'Please enter location and number of days.';
       });
       return;
     }
@@ -61,8 +66,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
       _initializeGeminiAPI();
       if (_chat == null) {
         setState(() {
-          _itinerary =
-              'I apologize, I am unable to process your request at the moment. Please try again later.';
+          _itinerary = 'Unable to process request. Please try again later.';
         });
         return;
       }
@@ -70,13 +74,74 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
 
     try {
       setState(() {
-        _isLoading = true; // Set loading flag to true
-        _itinerary = 'Loading...'; // Display loading text
+        _isLoading = true;
+        _itinerary = 'Loading...';
       });
 
-      print('Sending location and days to Gemini API: $location, $days');
       final response = await _chat!.sendMessage(Content.text(
           'Generate a detailed $days-day itinerary for $location in India.'));
+      final botResponse = response.text;
+
+      if (botResponse != null && botResponse.isNotEmpty) {
+        setState(() {
+          _savedItinerary = botResponse; // Save the generated itinerary
+          _itinerary = _formatMessage(botResponse);
+        });
+      } else {
+        setState(() {
+          _itinerary =
+              'Unable to generate itinerary. Please ensure your inputs are correct.';
+        });
+      }
+    } catch (e) {
+      print('Error generating itinerary: $e');
+      setState(() {
+        _itinerary = 'Error processing request. Please try again later.';
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _modifyItinerary() async {
+    final preferences = _locationController.text;
+
+    if (_savedItinerary == null) {
+      setState(() {
+        _itinerary =
+            'No itinerary to modify. Please generate an itinerary first.';
+      });
+      return;
+    }
+
+    if (preferences.isEmpty) {
+      setState(() {
+        _itinerary = 'Please enter preferences to modify the itinerary.';
+      });
+      return;
+    }
+
+    if (_chat == null) {
+      print('Chat session is null. Trying to reinitialize...');
+      _initializeGeminiAPI();
+      if (_chat == null) {
+        setState(() {
+          _itinerary = 'Unable to process request. Please try again later.';
+        });
+        return;
+      }
+    }
+
+    try {
+      setState(() {
+        _isLoading = true;
+        _itinerary = 'Modifying...';
+      });
+
+      final response = await _chat!.sendMessage(Content.text(
+          'Modify the saved itinerary based on the new preferences: "$preferences". Current itinerary: $_savedItinerary'));
       final botResponse = response.text;
 
       if (botResponse != null && botResponse.isNotEmpty) {
@@ -86,18 +151,17 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
       } else {
         setState(() {
           _itinerary =
-              'I apologize, I couldn’t generate an itinerary for that location. Please ensure it is a valid location in India.';
+              'Unable to modify itinerary. Please ensure your inputs are correct.';
         });
       }
     } catch (e) {
-      print('Error generating itinerary via Gemini API: $e');
+      print('Error modifying itinerary: $e');
       setState(() {
-        _itinerary =
-            'I encountered an error processing your request. Please try again later or rephrase your query.';
+        _itinerary = 'Error processing request. Please try again later.';
       });
     } finally {
       setState(() {
-        _isLoading = false; // Set loading flag to false
+        _isLoading = false;
       });
     }
   }
@@ -139,6 +203,79 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 211, 94, 44),
+              ),
+              child: Text(
+                'Guide',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.calendar_today),
+              title: Text('Itinerary'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home Page'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TravelPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('Essentials'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.price_change),
+              title: Text('Price Alert'),
+              onTap: () {
+                Navigator.pop(context); // Handle menu actions here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.people),
+              title: Text('Crowd Prediction'),
+              onTap: () {
+                Navigator.pop(context); // Handle menu actions here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.document_scanner),
+              title: Text('Document Management'),
+              onTap: () {
+                Navigator.pop(context); // Handle menu actions here
+              },
+            ),
+          ],
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 242, 232, 205),
@@ -163,12 +300,16 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 20,
-                  left: 16,
-                  child: IconButton(
-                    icon: const Icon(Icons.menu, color: Colors.black),
-                    onPressed: () {},
+                Builder(
+                  builder: (context) => Positioned(
+                    top: 20,
+                    left: 16,
+                    child: IconButton(
+                      icon: const Icon(Icons.menu, color: Colors.black),
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                    ),
                   ),
                 ),
                 Positioned(
@@ -179,7 +320,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                     backgroundColor: Colors.white,
                     child: IconButton(
                       icon: const Icon(Icons.person, color: Colors.black),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileWidget()),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -197,9 +344,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
             ),
             const SizedBox(height: 20),
             const Padding(
-              padding: EdgeInsets.only(
-                  left:
-                      38.0), // Add left padding of 16 pixels (or any value you prefer)
+              padding: EdgeInsets.only(left: 38.0), // Add left padding
               child: Text(
                 'CUSTOMIZE',
                 style: TextStyle(
@@ -224,6 +369,17 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                             controller: _locationController,
                             decoration: const InputDecoration(
                               labelText: 'Add preferences',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: TextField(
+                            controller: _daysController,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              labelText: 'Number of days',
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -265,21 +421,42 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
-                    side: const BorderSide(color: Colors.black),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12),
-                  ),
-                  child: const Text(
-                    'Modify Itinerary',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _generateItinerary,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
+                        side: const BorderSide(color: Colors.black),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                      ),
+                      child: const Text(
+                        'Generate Itinerary',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
+                    ElevatedButton(
+                      onPressed: _modifyItinerary,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(223, 236, 249, 1),
+                        side: const BorderSide(color: Colors.black),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                      ),
+                      child: const Text(
+                        'Modify Itinerary',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
