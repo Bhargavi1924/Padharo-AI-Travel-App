@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/homepage.dart';
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/signup.dart';
-import 'package:travel_app/homepage.dart'; // Import TravelPage for navigation
-import 'package:travel_app/signup.dart'; // Import SignupPage for navigation
 
 class EssentialsWidget extends StatefulWidget {
   @override
@@ -13,12 +12,35 @@ class EssentialsWidget extends StatefulWidget {
 }
 
 class _EssentialsWidgetState extends State<EssentialsWidget> {
-  // List to keep track of clicked items
-  List<bool> _isChecked = List.generate(11, (index) => false);
+  List<bool> _isChecked = List.generate(
+      11, (index) => false); // List to keep track of clicked items
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCheckedItems(); // Load saved checked items on initialization
+  }
+
+  Future<void> _loadCheckedItems() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? checkedItems = prefs.getStringList('checkedItems');
+
+    if (checkedItems != null) {
+      setState(() {
+        _isChecked = checkedItems.map((item) => item == 'true').toList();
+      });
+    }
+  }
+
+  Future<void> _saveCheckedItems() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> checkedItems =
+        _isChecked.map((item) => item.toString()).toList();
+    await prefs.setStringList('checkedItems', checkedItems);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // List of items and their labels
     List<String> labels = [
       'Socks',
       'Tooth Brush',
@@ -54,7 +76,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               leading: Icon(Icons.calendar_today),
               title: Text('Itinerary'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ItineraryScreen()),
@@ -65,7 +87,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               leading: Icon(Icons.home),
               title: Text('Home Page'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => TravelPage()),
@@ -76,7 +98,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               leading: Icon(Icons.person_add),
               title: Text('Sign Up'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignupPage()),
@@ -87,7 +109,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               leading: Icon(Icons.list),
               title: Text('Essentials'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => EssentialsWidget()),
@@ -98,21 +120,21 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               leading: Icon(Icons.price_change),
               title: Text('Price Alert'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: Icon(Icons.people),
               title: Text('Crowd Prediction'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: Icon(Icons.document_scanner),
               title: Text('Document Management'),
               onTap: () {
-                Navigator.pop(context); // Handle menu actions here
+                Navigator.pop(context);
               },
             ),
           ],
@@ -196,6 +218,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                   onTap: () {
                     setState(() {
                       _isChecked[i] = !_isChecked[i]; // Toggle check status
+                      _saveCheckedItems(); // Save the state to preferences
                     });
                   },
                   child: Row(
@@ -230,10 +253,6 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                   ),
                 ),
               ),
-            // Add your existing Positioned elements with SVGs, images, etc.
-            // ...
-
-            // Menu icon for opening the drawer
             Positioned(
               top: 20,
               left: 16,
