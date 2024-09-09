@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:travel_app/customize.dart';
 import 'package:travel_app/essentials.dart';
 import 'package:travel_app/itinerary.dart';
+import 'package:travel_app/prices.dart';
 
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/model/itinerary_model.dart';
@@ -47,10 +48,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
       routes: {
-        '/home': (context) => TravelPage(),
-        '/profile': (context) => ProfileWidget(), // Add this line
+        '/home': (context) => const TravelPage(),
+        '/profile': (context) => const ProfileWidget(), // Add this line
       },
     );
   }

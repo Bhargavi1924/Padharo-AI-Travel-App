@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/essentials.dart';
 import 'package:travel_app/homepage.dart';
 import 'package:travel_app/itinerary.dart';
+import 'package:travel_app/prices.dart';
 import 'package:travel_app/profile.dart';
 
 class CustomizeWidget extends StatefulWidget {
@@ -207,9 +208,9 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 211, 94, 44),
+                color: Color.fromARGB(255, 211, 94, 44),
               ),
               child: Text(
                 'Guide',
@@ -220,55 +221,62 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Itinerary'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Itinerary'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ItineraryScreen()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home Page'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home Page'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TravelPage()),
+                  MaterialPageRoute(builder: (context) => const TravelPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.list),
-              title: Text('Essentials'),
+              leading: const Icon(Icons.list),
+              title: const Text('Essentials'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => const EssentialsWidget()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.price_change),
-              title: Text('Price Alert'),
+              leading: const Icon(Icons.price_change),
+              title: const Text('Price Alert'),
+              onTap: () {
+                Navigator.pop(context); // Handle menu actions here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PricealertWidget()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.people),
+              title: const Text('Crowd Prediction'),
               onTap: () {
                 Navigator.pop(context); // Handle menu actions here
               },
             ),
             ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Crowd Prediction'),
-              onTap: () {
-                Navigator.pop(context); // Handle menu actions here
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text('Document Management'),
+              leading: const Icon(Icons.document_scanner),
+              title: const Text('Document Management'),
               onTap: () {
                 Navigator.pop(context); // Handle menu actions here
               },
@@ -324,7 +332,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProfileWidget()),
+                              builder: (context) => const ProfileWidget()),
                         );
                       },
                     ),

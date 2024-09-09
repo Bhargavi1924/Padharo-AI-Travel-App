@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatefulWidget {
+  const ProfileWidget({super.key});
+
   @override
   _ProfileWidgetState createState() => _ProfileWidgetState();
 }
@@ -12,7 +14,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       body: Container(
         width: 360,
         height: 800,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(255, 255, 255, 1),
         ),
         child: Stack(
@@ -26,7 +28,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 height: 584,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
-                  color: Color.fromRGBO(245, 219, 189, 0.5),
+                  color: const Color.fromRGBO(245, 219, 189, 0.5),
                 ),
               ),
             ),
@@ -39,12 +41,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 height: 204,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
-                  color: Color.fromRGBO(245, 219, 189, 0.5),
+                  color: const Color.fromRGBO(245, 219, 189, 0.5),
                 ),
               ),
             ),
             // Profile title
-            Positioned(
+            const Positioned(
               top: 77,
               left: 118,
               child: Text(
@@ -68,7 +70,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 height: 104,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(217, 217, 217, 1),
+                  color: const Color.fromRGBO(217, 217, 217, 1),
                 ),
               ),
             ),
@@ -79,7 +81,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Container(
                 width: 74,
                 height: 84,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/People1.png'),
                     fit: BoxFit.cover,
@@ -94,7 +96,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Container(
                 width: 258,
                 height: 54,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromRGBO(223, 236, 248, 1),
                 ),
               ),
@@ -105,7 +107,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Container(
                 width: 258,
                 height: 54,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromRGBO(223, 236, 248, 1),
                 ),
               ),
@@ -116,7 +118,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Container(
                 width: 258,
                 height: 54,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromRGBO(223, 236, 248, 1),
                 ),
               ),
@@ -127,13 +129,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: Container(
                 width: 258,
                 height: 54,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color.fromRGBO(223, 236, 248, 1),
                 ),
               ),
             ),
             // Labels
-            Positioned(
+            const Positioned(
               top: 514,
               left: 138,
               child: Text(
@@ -148,7 +150,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 359,
               left: 145,
               child: Text(
@@ -163,7 +165,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 434,
               left: 150,
               child: Text(
@@ -178,7 +180,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 592,
               left: 141,
               child: Text(
@@ -206,15 +208,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        Color.fromRGBO(14, 14, 14, 1), // Button color
+                        const Color.fromRGBO(14, 14, 14, 1), // Button color
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Back to Home Page',
                     style: TextStyle(
-                      color: const Color.fromARGB(255, 249, 247, 247),
+                      color: Color.fromARGB(255, 249, 247, 247),
                       fontFamily: 'Inter',
                       fontSize: 18,
                     ),

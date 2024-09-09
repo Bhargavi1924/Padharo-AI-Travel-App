@@ -45,7 +45,7 @@ class _SignupPageState extends State<SignupPage> {
       // Navigate to the login page after successful signup
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     } catch (e) {
       setState(() {
