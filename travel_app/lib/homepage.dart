@@ -63,7 +63,8 @@ class _TravelPageState extends State<TravelPage> {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ItineraryScreen()),
                 );
               },
             ),
@@ -75,7 +76,7 @@ class _TravelPageState extends State<TravelPage> {
                 // Navigate to the Home Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TravelPage()),
+                  MaterialPageRoute(builder: (context) => const TravelPage()),
                 );
               },
             ),
@@ -86,7 +87,7 @@ class _TravelPageState extends State<TravelPage> {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
+                  MaterialPageRoute(builder: (context) => const SignupPage()),
                 );
               },
             ),
@@ -99,7 +100,7 @@ class _TravelPageState extends State<TravelPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          EssentialsWidget()), // Navigate to EssentialsWidget
+                          const EssentialsWidget()), // Navigate to EssentialsWidget
                 );
               },
             ),
@@ -260,7 +261,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ItineraryScreen(),
+                          builder: (context) => const ItineraryScreen(),
                         ),
                       );
                     },
@@ -276,7 +277,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EssentialsWidget()),
+                            builder: (context) => const EssentialsWidget()),
                       );
                     },
                   ),
@@ -291,7 +292,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -306,7 +307,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -321,7 +322,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -336,7 +337,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),

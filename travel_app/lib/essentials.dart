@@ -7,6 +7,8 @@ import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/signup.dart';
 
 class EssentialsWidget extends StatefulWidget {
+  const EssentialsWidget({super.key});
+
   @override
   _EssentialsWidgetState createState() => _EssentialsWidgetState();
 }
@@ -60,7 +62,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 228, 143, 90),
               ),
@@ -73,66 +75,68 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Itinerary'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Itinerary'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ItineraryScreen()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home Page'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home Page'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TravelPage()),
+                  MaterialPageRoute(builder: (context) => const TravelPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Sign Up'),
+              leading: const Icon(Icons.person_add),
+              title: const Text('Sign Up'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
+                  MaterialPageRoute(builder: (context) => const SignupPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.list),
-              title: Text('Essentials'),
+              leading: const Icon(Icons.list),
+              title: const Text('Essentials'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => const EssentialsWidget()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.price_change),
-              title: Text('Price Alert'),
+              leading: const Icon(Icons.price_change),
+              title: const Text('Price Alert'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Crowd Prediction'),
+              leading: const Icon(Icons.people),
+              title: const Text('Crowd Prediction'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text('Document Management'),
+              leading: const Icon(Icons.document_scanner),
+              title: const Text('Document Management'),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -151,11 +155,11 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(217, 217, 217, 1),
+                  color: const Color.fromRGBO(217, 217, 217, 1),
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 24,
               left: 18.9,
               child: Divider(color: Color.fromRGBO(0, 0, 0, 1), thickness: 3),
@@ -165,7 +169,8 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               left: 20,
               child: Transform.rotate(
                 angle: -7.95e-16 * (math.pi / 180),
-                child: Divider(color: Color.fromRGBO(0, 0, 0, 1), thickness: 3),
+                child: const Divider(
+                    color: Color.fromRGBO(0, 0, 0, 1), thickness: 3),
               ),
             ),
             Positioned(
@@ -174,7 +179,7 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
               child: Container(
                 width: 34,
                 height: 34,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/People1.png'),
                     fit: BoxFit.fitWidth,
@@ -190,11 +195,11 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                 height: 726,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(54),
-                  color: Color.fromRGBO(245, 219, 188, 1),
+                  color: const Color.fromRGBO(245, 219, 188, 1),
                 ),
               ),
             ),
-            Positioned(
+            const Positioned(
               top: 88,
               left: 38,
               child: Text(
@@ -229,19 +234,20 @@ class _EssentialsWidgetState extends State<EssentialsWidget> {
                         decoration: BoxDecoration(
                           color: _isChecked[i] ? Colors.green : Colors.white,
                           border: Border.all(
-                            color: Color.fromRGBO(0, 0, 0, 1),
+                            color: const Color.fromRGBO(0, 0, 0, 1),
                             width: 1,
                           ),
                         ),
                         child: _isChecked[i]
-                            ? Icon(Icons.check, color: Colors.white, size: 20)
+                            ? const Icon(Icons.check,
+                                color: Colors.white, size: 20)
                             : null,
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         labels[i],
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),
                           fontFamily: 'Inter',
                           fontSize: 20,

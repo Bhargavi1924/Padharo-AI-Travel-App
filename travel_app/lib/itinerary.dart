@@ -172,66 +172,68 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Itinerary'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Itinerary'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ItineraryScreen()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home Page'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home Page'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TravelPage()),
+                  MaterialPageRoute(builder: (context) => const TravelPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Sign Up'),
+              leading: const Icon(Icons.person_add),
+              title: const Text('Sign Up'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
+                  MaterialPageRoute(builder: (context) => const SignupPage()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.list),
-              title: Text('Essentials'),
+              leading: const Icon(Icons.list),
+              title: const Text('Essentials'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => const EssentialsWidget()),
                 );
               },
             ),
             ListTile(
-              leading: Icon(Icons.price_change),
-              title: Text('Price Alert'),
+              leading: const Icon(Icons.price_change),
+              title: const Text('Price Alert'),
               onTap: () {
                 Navigator.pop(context); // Handle menu actions here
               },
             ),
             ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Crowd Prediction'),
+              leading: const Icon(Icons.people),
+              title: const Text('Crowd Prediction'),
               onTap: () {
                 Navigator.pop(context); // Handle menu actions here
               },
             ),
             ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text('Document Management'),
+              leading: const Icon(Icons.document_scanner),
+              title: const Text('Document Management'),
               onTap: () {
                 Navigator.pop(context); // Handle menu actions here
               },
@@ -384,7 +386,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CustomizeWidget(),
+                          builder: (context) => const CustomizeWidget(),
                         ),
                       );
                     },

@@ -35,13 +35,14 @@ dependencies:
   firebase_auth: ^5.2.0
   cloud_firestore: ^5.4.0 # Example, use as needed
   shared_preferences: ^2.0.11
+  
 
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^1.0.0
   google_fonts: ^6.2.1
   vector_math: ^2.1.4
   http: ^1.2.2
@@ -76,10 +77,27 @@ flutter:
     - assets/india.jpg
     - assets/itinry.png
     - assets/to-do-list.png
-    - assets\price-list.png
-    - assets\people .png
+    - assets/price-list.png
+    - assets/people .png
     - assets/documents.png
     - assets/virtual-tour.png
+    - assets/People1 (1).png
+    - assets/Pixlrimagegenerator2dfdcadad5244f4e80a7b4066d63ff0e1.png
+    - assets/Image11.png
+    - assets/Image10.png
+    - assets/Image6.png
+    - assets/Image12.png
+    - assets/Image13.png
+    - assets/kashmir.jpg
+    - assets/goa.jpg
+    - assets/kerala.jpg
+    - assets/meghalaya.jpg
+    - assets/vector.svg
+    - assets/banknotes.png
+    - assets/cash-icon.svg
+  
+    
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
