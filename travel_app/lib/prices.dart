@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'dart:math' as math;
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PricealertWidget extends StatefulWidget {
@@ -28,12 +29,17 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   width: 42,
                   height: 40,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
                     color: Color.fromRGBO(217, 217, 217, 1),
                   ))),
           const Positioned(
               top: 24,
-              left: 18.9,
+              left: 18.89502716064453,
               child: Divider(color: Color.fromRGBO(0, 0, 0, 1), thickness: 3)),
           Positioned(
               top: 35,
@@ -51,26 +57,84 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   height: 34,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/People1.png'),
+                        image: AssetImage('assets/People1 (1).png'),
                         fit: BoxFit.fitWidth),
                   ))),
           Positioned(
               top: 243,
-              left: 50,
+              left: 33,
               child: Container(
-                  width: 145,
+                  width: 146,
+                  height: 175,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    color: Color.fromRGBO(217, 217, 217, 1),
+                  ))),
+          Positioned(
+              top: 243,
+              left: 225,
+              child: Container(
+                  width: 146,
+                  height: 175,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    color: Color.fromRGBO(217, 217, 217, 1),
+                  ))),
+          Positioned(
+              top: 544,
+              left: 33,
+              child: Container(
+                  width: 146,
+                  height: 175,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    color: Color.fromRGBO(217, 217, 217, 1),
+                  ))),
+          Positioned(
+              top: 544,
+              left: 225,
+              child: Container(
+                  width: 146,
+                  height: 175,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    color: Color.fromRGBO(217, 217, 217, 1),
+                  ))),
+          Positioned(
+              top: 243,
+              left: 34,
+              child: Container(
+                  width: 142,
                   height: 180,
                   decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2), // Shadow color
-                        spreadRadius: 1, // Spread radius
-                        blurRadius: 1, // Blur radius
-                        offset: const Offset(0, 0),
-                      ),
-                    ],
-                    image: const DecorationImage(
-                      image: AssetImage('assets/Image11.png'),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage('assets/kerala.jpg'),
                       fit: BoxFit.fitWidth,
                     ),
                   ))),
@@ -84,6 +148,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Comfortaa',
                     fontSize: 30,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -95,7 +161,12 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   width: 88,
                   height: 42,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
                     color: Color.fromRGBO(149, 186, 221, 1),
                   ))),
           Positioned(
@@ -105,7 +176,12 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   width: 207,
                   height: 42,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
                     color: Color.fromRGBO(149, 186, 221, 1),
                   ))),
           const Positioned(
@@ -118,6 +194,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Fenix',
                     fontSize: 24,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.normal,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -146,6 +224,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Fenix',
                     fontSize: 24,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.normal,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -175,6 +255,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Della Respira',
                     fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -189,6 +271,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Della Respira',
                     fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -203,6 +287,8 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Della Respira',
                     fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,
                     height: 1),
@@ -217,16 +303,18 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                     color: Color.fromRGBO(0, 0, 0, 1),
                     fontFamily: 'Della Respira',
                     fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,
                     height: 1),
               )),
           Positioned(
               top: 243,
-              left: 195,
+              left: 227,
               child: Container(
-                  width: 146,
-                  height: 175,
+                  width: 143,
+                  height: 180,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(55),
@@ -235,12 +323,12 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                       bottomRight: Radius.circular(0),
                     ),
                     image: DecorationImage(
-                        image: AssetImage('assets/Image12.png'),
+                        image: AssetImage('assets/goa.jpg'),
                         fit: BoxFit.fitWidth),
                   ))),
           Positioned(
               top: 544,
-              left: 195,
+              left: 228,
               child: Container(
                   width: 146,
                   height: 175,
@@ -252,7 +340,7 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                       bottomRight: Radius.circular(0),
                     ),
                     image: DecorationImage(
-                        image: AssetImage('assets/Image13.png'),
+                        image: AssetImage('assets/kashmir.jpg'),
                         fit: BoxFit.fitWidth),
                   ))),
           Positioned(
@@ -264,7 +352,20 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
-                  child: SvgPicture.asset('assets/vector.svg'))),
+                  child: Stack(children: <Widget>[
+                    Positioned(
+                      top: 12.5,
+                      left: 8.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                    Positioned(
+                      top: 0.6589999794960022,
+                      left: 1.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                  ]))),
           Positioned(
               top: 759,
               left: 235,
@@ -274,7 +375,20 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
-                  child: SvgPicture.asset('assets/vector.svg'))),
+                  child: Stack(children: <Widget>[
+                    Positioned(
+                      top: 12.5,
+                      left: 8.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                    Positioned(
+                      top: 0.6589999794960022,
+                      left: 1.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                  ]))),
           Positioned(
               top: 455,
               left: 235,
@@ -284,9 +398,22 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
-                  child: SvgPicture.asset('assets/vector.svg'))),
+                  child: Stack(children: <Widget>[
+                    Positioned(
+                      top: 12.5,
+                      left: 8.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                    Positioned(
+                      top: 0.6589999794960022,
+                      left: 1.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                  ]))),
           Positioned(
-              top: 759,
+              top: 760,
               left: 60,
               child: Container(
                   width: 24,
@@ -294,7 +421,103 @@ class _PricealertWidgetState extends State<PricealertWidget> {
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
-                  child: SvgPicture.asset('assets/vector.svg')))
+                  child: Stack(children: <Widget>[
+                    Positioned(
+                      top: 12.5,
+                      left: 8.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                    Positioned(
+                      top: 0.6589999794960022,
+                      left: 1.5,
+                      child: SvgPicture.asset('assets/cash-icon.svg',
+                          semanticsLabel: 'vector'),
+                    ),
+                  ]))),
+          const Positioned(
+              top: 762,
+              left: 285,
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  '80k',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Color.fromRGBO(0, 0, 0, 1),
+                      fontFamily: 'Della Respira',
+                      fontSize: 16,
+                      letterSpacing: 0,
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.none,
+                      height: 1),
+                ),
+              )),
+          const Positioned(
+              top: 459,
+              left: 285,
+              child: Text(
+                '28k',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Della Respira',
+                    fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    decoration: TextDecoration.none,
+                    height: 1),
+              )),
+          const Positioned(
+              top: 464,
+              left: 100,
+              child: Text(
+                '1L',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Della Respira',
+                    fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    decoration: TextDecoration.none,
+                    height: 1),
+              )),
+          const Positioned(
+              top: 764,
+              left: 100,
+              child: Text(
+                '30k',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Della Respira',
+                    fontSize: 16,
+                    letterSpacing:
+                        0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    decoration: TextDecoration.none,
+                    height: 1),
+              )),
+          Positioned(
+              top: 547,
+              left: 30,
+              child: Container(
+                  width: 147,
+                  height: 175,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(55),
+                      topRight: Radius.circular(55),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                    image: DecorationImage(
+                        image: AssetImage('assets/meghalaya.jpg'),
+                        fit: BoxFit.fitWidth),
+                  ))),
         ]));
   }
 }
