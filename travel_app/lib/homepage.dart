@@ -4,6 +4,7 @@ import 'package:travel_app/essentials.dart';
 import 'package:travel_app/itinerary.dart';
 import 'package:travel_app/signup.dart';
 import 'package:travel_app/profile.dart';
+import 'package:travel_app/prices.dart';
 
 class TravelPage extends StatefulWidget {
   const TravelPage({super.key});
@@ -68,7 +69,8 @@ class _TravelPageState extends State<TravelPage> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EssentialsWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => const EssentialsWidget()),
                 );
               },
             ),
@@ -77,6 +79,11 @@ class _TravelPageState extends State<TravelPage> {
               title: const Text('Price Alert'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PricealertWidget()),
+                );
               },
             ),
             ListTile(
@@ -141,7 +148,8 @@ class _TravelPageState extends State<TravelPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfileWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileWidget()),
                 );
               },
             ),
@@ -209,7 +217,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EssentialsWidget()),
+                            builder: (context) => const EssentialsWidget()),
                       );
                     },
                   ),
@@ -224,7 +232,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ItineraryScreen()),
+                            builder: (context) => const PricealertWidget()),
                       );
                     },
                   ),
