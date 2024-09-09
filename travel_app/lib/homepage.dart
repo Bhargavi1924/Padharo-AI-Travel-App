@@ -45,7 +45,8 @@ class _TravelPageState extends State<TravelPage> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ItineraryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const ItineraryScreen()),
                 );
               },
             ),
@@ -56,7 +57,7 @@ class _TravelPageState extends State<TravelPage> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TravelPage()),
+                  MaterialPageRoute(builder: (context) => const TravelPage()),
                 );
               },
             ),
@@ -120,6 +121,7 @@ class _TravelPageState extends State<TravelPage> {
               builder: (BuildContext context) {
                 return IconButton(
                   icon: const Icon(Icons.menu),
+                  color: const Color.fromARGB(199, 253, 253, 253),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
@@ -131,10 +133,11 @@ class _TravelPageState extends State<TravelPage> {
             top: 40, // Adjust the vertical position as needed
             right: 10, // Adjust the horizontal position as needed
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.person, // Profile icon to represent a person
                 size: 30,
               ),
+              color: const Color.fromARGB(199, 253, 253, 253),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -151,7 +154,7 @@ class _TravelPageState extends State<TravelPage> {
                 Column(
                   children: [
                     Container(
-                      margin: const EdgeInsets.fromLTRB(0, 2, 0, 20),
+                      margin: const EdgeInsets.fromLTRB(10, 100, 5, 2),
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -190,7 +193,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ItineraryScreen(),
+                          builder: (context) => const ItineraryScreen(),
                         ),
                       );
                     },
@@ -221,7 +224,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -236,7 +239,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -251,7 +254,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
@@ -266,7 +269,7 @@ class _TravelPageState extends State<TravelPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItineraryScreen()),
+                            builder: (context) => const ItineraryScreen()),
                       );
                     },
                   ),
