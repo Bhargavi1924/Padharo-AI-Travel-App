@@ -9,9 +9,8 @@
 
 ## 📸 App Preview
 
+![WhatsApp Image 2025-01-31 at 20 00 59_e9fbb848](https://github.com/user-attachments/assets/2e0b258c-ac53-49c1-a810-36af02cbdb2a)
 
-&#x20;
-&#x20;
 
 ## ✨ Features
 
